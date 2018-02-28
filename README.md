@@ -3,7 +3,7 @@ Welcome to the front end programming challenge for Chess.com. Please read the in
 
 # Instructions
 1. Fork this repository into your own github account
-2. Using this boilerplate as an example please create a VueJS application from the requirements below in the requirements section.
+2. Using this boilerplate please create a VueJS application base on the requirements below.
 3. Once you are finished please commit all your changes to your fork and send the link to the repository. Also please provide a link to a working version of the code.
 
 # Requirements
