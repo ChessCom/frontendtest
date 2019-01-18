@@ -17,4 +17,4 @@ Welcome to the [Chess.com](https://chess.com) front end programming challenge!
 7. Display the information collected from step 6 in the sidebar.
 
 # Questions & Feedback
-Please contact Chuck Haines (chaines@gmail.com) with any questions or feedback regarding this challenge.
+Please contact Chuck Haines (chaines@chess.com) with any questions or feedback regarding this challenge.
