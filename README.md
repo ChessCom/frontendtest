@@ -9,7 +9,7 @@ Welcome to the [Chess.com](https://chess.com) front end programming challenge!
 
 # Application Requirements
 1. Create a page with a chessboard and a sidebar.
-2. On desktop devices the sidebar should be positioned to the right of the sidebar.
+2. On desktop devices the sidebar should be positioned to the right of the chessboard.
 3. On mobile devices the sidebar should be positioned below the chessboard.
 4. The chessboard should resize responsively to consume available space.
 5. Clicking a chessboard square should highlight the square.
