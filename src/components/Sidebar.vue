@@ -1,9 +1,17 @@
 <template>
-  <div class="sidebar"></div>
+  <div class="sidebar">
+    <h4>Your moves:</h4>
+    <span class="move-info" v-for="(square, index) in moves">
+      <span class="move-index">{{ index }}. </span>
+      <span class="move-text">{{ square.displayValue }} </span>
+    </span>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useSquares } from '@/hooks/useSquares.ts'
+
+const { moves } = useSquares()
 </script>
 
 <style scoped>

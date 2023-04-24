@@ -1,16 +1,20 @@
 <template>
   <div class="chessboard">
-    <div v-for="(_, rank) in Array.from(Array(8))" class="rank">
+    <div v-for="rank in squares" class="rank">
       <div
-        v-for="(_, file) in Array.from(Array(8))"
-        class="square"
-        @click.prevent="selectSquare(rank, file)"
+        v-for="square in rank"
+        :class="['square', square.selected ? 'selected' : '']"
+        @click.prevent="() => selectSquare(square)"
       ></div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useSquares } from '@/hooks/useSquares.ts'
+
+const { squares, selectSquare } = useSquares()
+</script>
 
 <style scoped>
 .chessboard {
