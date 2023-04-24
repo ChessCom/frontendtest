@@ -13,10 +13,14 @@ import Sidebar from './components/Sidebar.vue'
 <style scoped>
 .layout {
   display: flex;
-  width: 90dvw;
-  height: 90dvh;
-  min-height: 200px;
-  /* outline: 2px solid pink; */
+  width: 100dvw;
+  min-height: 100dvh;
   justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
 }
 </style>

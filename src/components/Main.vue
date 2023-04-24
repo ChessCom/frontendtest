@@ -10,7 +10,6 @@ import Chessboard from '@/components/Chessboard.vue'
 
 <style scoped>
 .main {
-  /* outline: 2px solid blue; */
   width: var(--boardSize);
   height: var(--boardSize);
   background-color: #202020;

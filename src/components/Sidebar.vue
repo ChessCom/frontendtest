@@ -8,10 +8,36 @@ import { useSquares } from '@/hooks/useSquares.ts'
 
 <style scoped>
 .sidebar {
-  /* outline: 2px solid red; */
   flex-basis: var(--sidebarWidth);
   margin-left: var(--sidebarSpacing);
   background-color: #202020;
   border-radius: 12px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+h4 {
+  margin: 0;
+}
+
+.move-info {
+}
+
+.move-index {
+  color: lightgray;
+  font-size: small;
+}
+
+.move-text {
+  font-weight: bold;
+  padding-right: 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    margin-left: 0;
+    margin-top: var(--sidebarSpacing);
+    flex-basis: auto;
+  }
 }
 </style>

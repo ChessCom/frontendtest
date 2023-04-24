@@ -20,16 +20,21 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
-  --sidebarWidth: 200px;
+  --sidebarWidth: 240px;
   --sidebarSpacing: 24px;
   --layoutSmallerConstraint: min(
-    90dvh,
-    calc(90dvw - (var(--sidebarWidth) + var(--sidebarSpacing)))
+    100dvh,
+    calc(100dvw - (var(--sidebarWidth) + var(--sidebarSpacing)))
   );
   --boardSize: max(200px, var(--layoutSmallerConstraint));
 }
+@media only screen and (max-width: 768px) {
+  body {
+    --layoutSmallerConstraint: min(100dvh, calc(100dvw));
+    --boardSize: max(200px, var(--layoutSmallerConstraint));
+  }
+}
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
 }
