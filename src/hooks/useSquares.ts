@@ -1,8 +1,6 @@
 import { Ref, ref } from 'vue'
 
 type Square = {
-  rank: number
-  file: number
   displayValue: string
   selected: boolean
 }
@@ -17,13 +15,11 @@ const generateSquares = () => {
     return Array.from(
       Array(8),
       (_, file): Square => ({
-        rank,
-        file,
-        displayValue: getDisplayValue(rank, file),
+        displayValue: getDisplayValue(7 - rank, file),
         selected: false,
       })
     )
-  }).reverse()
+  })
 }
 
 const squares = ref(generateSquares())
