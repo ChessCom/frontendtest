@@ -1,11 +1,18 @@
 <template>
   <div class="chessboard">
-    <div v-for="rank in squares" class="rank">
+    <div v-for="(rank, rankIndex) in squares" class="rank">
       <div
-        v-for="square in rank"
+        v-for="(square, fileIndex) in rank"
         :class="['square', square.selected ? 'selected' : '']"
         @click.prevent="() => selectSquare(square)"
-      ></div>
+      >
+        <span class="rank-text" v-if="rankIndex === 7">{{
+          square.displayValue[0]
+        }}</span>
+        <span class="file-text" v-if="fileIndex === 0">{{
+          square.displayValue[1]
+        }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -49,11 +56,33 @@ const { squares, selectSquare } = useSquares()
   background-color: rgba(127, 255, 212, 0.361);
 }
 
-.chessboard :nth-child(2n) :nth-child(2n + 1) {
+.chessboard > :nth-child(2n) > :nth-child(2n + 1) {
   background-color: #988c77;
 }
 
-.chessboard :nth-child(2n + 1) :nth-child(2n) {
+.chessboard > :nth-child(2n + 1) > :nth-child(2n) {
   background-color: #988c77;
+}
+
+.rank-text {
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+  color: #988c77;
+}
+
+.chessboard > div > :nth-child(2n + 1) > .rank-text {
+  color: #ffebcd;
+}
+
+.file-text {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  color: #988c77;
+}
+
+.chessboard > :nth-child(2n) > div > .file-text {
+  color: #ffebcd;
 }
 </style>
