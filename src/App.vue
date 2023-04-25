@@ -21,6 +21,7 @@ import Sidebar from './components/Sidebar.vue'
 @media only screen and (max-width: 768px) {
   .layout {
     flex-direction: column;
+    justify-content: start;
   }
 }
 </style>
