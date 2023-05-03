@@ -5,6 +5,7 @@
         v-for="(square, fileIndex) in rank"
         :class="['square', square.selected ? 'selected' : '']"
         @click.prevent="() => selectSquare(square)"
+        :data-cy="square.displayValue"
       >
         <span class="rank-text" v-if="rankIndex === 7">{{
           square.displayValue[0]
