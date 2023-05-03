@@ -7,12 +7,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "cypress": "^12.11.0",
     "@vitejs/plugin-vue": "^4.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.0",
