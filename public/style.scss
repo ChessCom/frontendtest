@@ -1,0 +1,88 @@
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+	&.dragging {
+		cursor: grabbing;
+	}
+}
+
+#board {
+	@extend .mb-3;
+	aspect-ratio: 1 / 1;
+	border: 2px solid #404040;
+	display: flex;
+	flex-direction: column;
+}
+
+.pieces {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.piece {
+	cursor: grab;
+	display: flex;
+	flex-grow: 1;
+	user-select: none;
+}
+
+.square {
+	position: relative;
+	user-select: none;
+
+	> .piece {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+@mixin dark-square {
+	background-color: peru;
+	&.highlight {
+		background-color: salmon;
+	}
+	&.highlight-drop {
+		background-color: darkorange;
+	}
+}
+
+@mixin light-square {
+	background-color: burlywood;
+	&.highlight {
+		background-color: lightsalmon;
+	}
+	&.highlight-drop {
+		background-color: darkorange;
+	}
+}
+
+@for $i from 1 through 8 {
+	#rank-#{$i} {
+		&::before {
+			@extend .p-2;
+			align-items: center;
+			content: '#{$i}';
+			display: flex;
+			font-family: monospace;
+		}
+		flex-grow: 1;
+
+		@if $i % 2 == 0 {
+			> .square:nth-child(even) {
+				@include dark-square();
+			}
+			> .square:nth-child(odd) {
+				@include light-square();
+			}
+		} @else {
+			> .square:nth-child(odd) {
+				@include dark-square();
+			}
+			> .square:nth-child(even) {
+				@include light-square();
+			}
+		}
+	}
+}
