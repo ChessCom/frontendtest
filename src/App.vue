@@ -1,9 +1,9 @@
 <template>
-  <div class="sidebar">
-    <MainSidebar :squares="selectedSquares" />
-  </div>
   <div class="chessboard-container">
-    <MainChessboard @squareSelected="handleSquareSelection" />
+    <MainChessboard @coordinateSelected="handleCoordinateSelection" />
+  </div>
+  <div class="sidebar">
+    <MainSidebar :coordinates="selectedCoordinates" />
   </div>
 </template>
 
@@ -11,16 +11,13 @@
 import { ref } from 'vue'
 import MainChessboard from './components/MainChessboard.vue'
 import MainSidebar from './components/MainSidebar.vue'
+import { type ChessCoordinate } from './constants/chessConstants'
 
-export type Square = {
-  row: number
-  col: number
-}
 
-const selectedSquares = ref<Square[]>([])
+const selectedCoordinates = ref<ChessCoordinate[]>([])
 
-function handleSquareSelection(square: Square) {
-  selectedSquares.value.push(square)
+function handleCoordinateSelection(coordinate: ChessCoordinate) {
+  selectedCoordinates.value.push(coordinate)
 }
 </script>
 
@@ -47,7 +44,6 @@ function handleSquareSelection(square: Square) {
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
-/* semantic color variables for this project */
 :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
@@ -113,14 +109,15 @@ body {
 
 #app {
   display: grid;
-  grid-template-columns: minmax(125px, 250px) auto;
+  grid-template-columns: auto minmax(125px, 250px);
+  grid-template-rows: 1fr;
   height: 100vh;
   width: 100vw;
   background-color: #222222;
 }
 
 .sidebar {
-  grid-column: 1;
+  grid-column: 2;
   height: 100%;
   width: 100%;
   padding-left: 10px;
@@ -132,35 +129,43 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 90%;
-  padding: 5vh 5vw;
+  height: 100%;
+  padding: 5%;
   box-sizing: border-box;
+  margin: auto;
 }
 
 .chessboard {
-  min-width: 40vw;
-  max-width: 80vw; 
-  max-height: 80vh; 
-  aspect-ratio: 1;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  margin: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   #app {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr minmax(30%, auto);
-    height: 100vh;
-    width: 100vw;
+    grid-template-rows: auto 30%;
   }
 
-  .sidebar {
-    grid-row: 2;
-    padding: 10px;
+  .chessboard-container, .sidebar {
+    width: 100%;
   }
 
   .chessboard-container {
-    grid-column: 1;
     grid-row: 1;
+    grid-column: 1;
+    padding: 10px;
+  }
+
+  .chessboard {
+    max-width: 100%;
+    max-height: calc(70vh - 20px);
+    aspect-ratio: 1;
+  }
+
+  .sidebar {
+    grid-column: 1;
+    grid-row: 2;
     padding: 10px;
   }
 }

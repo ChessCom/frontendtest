@@ -1,32 +1,40 @@
 <template>
   <div class="chessboard">
-    <div v-for="(row, rowIndex) in 8" :key="`row-${rowIndex}`" class="row">
-      <div v-for="(col, colIndex) in 8" :key="`col-${colIndex}`"
-           class="square"
-           :class="{ selectedSquare: selectedSquare.row === rowIndex && selectedSquare.col === colIndex }"
-           @click="selectSquare(rowIndex, colIndex)">
-      </div>
+    <div v-for="rowIndex in 8" :key="`row-${rowIndex}`" class="row">
+      <div
+        v-for="colIndex in 8"
+        :key="`col-${colIndex}`"
+        class="coordinate"
+        :class="{ selectedCoordinate: isSelectedCoordinate(rowIndex as ValidRowOrColumnNumber, colIndex as ValidRowOrColumnNumber) }"
+        @click="selectCoordinate(rowIndex as ValidRowOrColumnNumber, colIndex as ValidRowOrColumnNumber)"
+      ></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineEmits, ref } from 'vue';
+import { type ChessCoordinate, type ValidRowOrColumnNumber } from '@/constants/chessConstants';
 
-interface Square {
-  row: number;
-  col: number;
-}
 
 const emit = defineEmits<{
-  (event: 'squareSelected', square: Square): void;
+  (event: 'coordinateSelected', coordinate: ChessCoordinate): void;
 }>();
 
-const selectedSquare = ref<Square>({ row: -1, col: -1 });
+const selectedCoordinates = ref<ChessCoordinate[]>([]);
 
-const selectSquare = (row: number, col: number) => {
-  selectedSquare.value = { row, col };
-  emit('squareSelected', { row, col });
+const selectCoordinate = (row: ValidRowOrColumnNumber, col: ValidRowOrColumnNumber) => {
+  const index = selectedCoordinates.value.findIndex(coordinate => coordinate.row === row && coordinate.col === col);
+  if (index === -1) {
+    selectedCoordinates.value.push({ row, col });
+  } else {
+    selectedCoordinates.value.splice(index, 1);
+  }
+  emit('coordinateSelected', { row, col });
+};
+
+const isSelectedCoordinate = (row: ValidRowOrColumnNumber, col: ValidRowOrColumnNumber): boolean => {
+  return selectedCoordinates.value.some(coordinate => coordinate.row === row && coordinate.col === col);
 };
 </script>
 
@@ -39,24 +47,24 @@ const selectSquare = (row: number, col: number) => {
 .row {
   display: contents;
 }
-.square {
+.coordinate {
   width: 100%;
-  padding-top: 100%; /* 1:1 Aspect Ratio */
+  padding-top: 100%; 
   position: relative;
-  background-color: #eee; /* Default color */
+  background-color: #eee; 
 }
-/* Alternate square colors */
-.row:nth-child(odd) .square:nth-child(even)::before,
-.row:nth-child(even) .square:nth-child(odd)::before {
+
+.row:nth-child(odd) .coordinate:nth-child(even)::before,
+.row:nth-child(even) .coordinate:nth-child(odd)::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #333; /* Alternate color */
+  background-color: #333; 
 }
-.selected {
-  outline: 2px solid yellow; /* Highlight effect for selected square */
+.selectedCoordinate {
+  box-shadow: 0 0 8px 1px rgba(255, 255, 0, 0.6); 
 }
 </style>

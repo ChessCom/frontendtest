@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar">
-    <h2>Selected Squares</h2>
+    <h2>Selected Coordinates</h2>
     <ul>
-      <li v-for="(square, index) in squares" :key="`square-${index}`">
-        Row: {{ square.row }}, Col: {{ square.col }}
+      <li v-for="coordinate in coordinates" :key="`coordinate-${coordinate}`">
+        Row: {{ coordinate.row }}, Col: {{ coordinate.col }}
       </li>
     </ul>
   </div>
@@ -11,17 +11,13 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-
-interface Square {
-  row: number;
-  col: number;
-}
+import { type ChessCoordinate } from '../constants/chessConstants';
 
 export default defineComponent({
   name: 'MainSidebar',
   props: {
-    squares: {
-      type: Array as PropType<Square[]>,
+    coordinates: {
+      type: Array as PropType<ChessCoordinate[]>,
       required: true,
     },
   },
@@ -29,9 +25,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Basic sidebar styles */
 .sidebar {
-  padding: 20px;
+  padding: 0px 20px;
   border-right: 1px solid #ccc;
+  overflow-y: auto;
 }
 </style>
+
