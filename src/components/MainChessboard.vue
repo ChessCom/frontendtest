@@ -5,37 +5,50 @@
         v-for="colIndex in 8"
         :key="`col-${colIndex}`"
         class="coordinate"
-        :class="{ selectedCoordinate: isSelectedCoordinate(rowIndex as ValidRowOrColumnNumber, colIndex as ValidRowOrColumnNumber) }"
-        @click="selectCoordinate(rowIndex as ValidRowOrColumnNumber, colIndex as ValidRowOrColumnNumber)"
+        :class="{
+          selectedCoordinate: isSelectedCoordinate(
+            rowIndex as ValidRowOrColumnNumber,
+            colIndex as ValidRowOrColumnNumber
+          )
+        }"
+        @click="
+          selectCoordinate(rowIndex as ValidRowOrColumnNumber, colIndex as ValidRowOrColumnNumber)
+        "
       ></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits, ref } from 'vue';
-import { type ChessCoordinate, type ValidRowOrColumnNumber } from '@/constants/chessConstants';
-
+import { defineEmits, ref } from 'vue'
+import { type ChessCoordinate, type ValidRowOrColumnNumber } from '@/constants/chessConstants'
 
 const emit = defineEmits<{
-  (event: 'coordinateSelected', coordinate: ChessCoordinate): void;
-}>();
+  (event: 'coordinateSelected', coordinate: ChessCoordinate): void
+}>()
 
-const selectedCoordinates = ref<ChessCoordinate[]>([]);
+const selectedCoordinates = ref<ChessCoordinate[]>([])
 
 const selectCoordinate = (row: ValidRowOrColumnNumber, col: ValidRowOrColumnNumber) => {
-  const index = selectedCoordinates.value.findIndex(coordinate => coordinate.row === row && coordinate.col === col);
+  const index = selectedCoordinates.value.findIndex(
+    (coordinate) => coordinate.row === row && coordinate.col === col
+  )
   if (index === -1) {
-    selectedCoordinates.value.push({ row, col });
+    selectedCoordinates.value.push({ row, col })
   } else {
-    selectedCoordinates.value.splice(index, 1);
+    selectedCoordinates.value.splice(index, 1)
   }
-  emit('coordinateSelected', { row, col });
-};
+  emit('coordinateSelected', { row, col })
+}
 
-const isSelectedCoordinate = (row: ValidRowOrColumnNumber, col: ValidRowOrColumnNumber): boolean => {
-  return selectedCoordinates.value.some(coordinate => coordinate.row === row && coordinate.col === col);
-};
+const isSelectedCoordinate = (
+  row: ValidRowOrColumnNumber,
+  col: ValidRowOrColumnNumber
+): boolean => {
+  return selectedCoordinates.value.some(
+    (coordinate) => coordinate.row === row && coordinate.col === col
+  )
+}
 </script>
 
 <style scoped>
@@ -49,9 +62,9 @@ const isSelectedCoordinate = (row: ValidRowOrColumnNumber, col: ValidRowOrColumn
 }
 .coordinate {
   width: 100%;
-  padding-top: 100%; 
+  padding-top: 100%;
   position: relative;
-  background-color: #eee; 
+  background-color: #eee;
 }
 
 .row:nth-child(odd) .coordinate:nth-child(even)::before,
@@ -62,9 +75,9 @@ const isSelectedCoordinate = (row: ValidRowOrColumnNumber, col: ValidRowOrColumn
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #333; 
+  background-color: #333;
 }
 .selectedCoordinate {
-  box-shadow: 0 0 8px 1px rgba(255, 255, 0, 0.6); 
+  box-shadow: rgba(255, 255, 0, 0.6) 0px 0px 0px 2px, rgba(255, 255, 0, 0.6) 0px 4px 6px -1px, rgba(255, 255, 0, 0.6) 0px 1px 0px inset;
 }
 </style>

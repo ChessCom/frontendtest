@@ -1,34 +1,57 @@
 <template>
   <div class="sidebar">
-    <h2>Selected Coordinates</h2>
+    <h2 class="sidebar-title">Selected Coordinates</h2>
     <ul>
-      <li v-for="coordinate in coordinates" :key="`coordinate-${coordinate}`">
-        Row: {{ coordinate.row }}, Col: {{ coordinate.col }}
+      <li v-for="(coordinate, index) in coordinates" :key="`coordinate-${coordinate}`">
+        <p>{{ index + 1 }}. {{ getChessCoordinate(coordinate) }}</p>
       </li>
     </ul>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue';
-import { type ChessCoordinate } from '../constants/chessConstants';
+<script setup lang="ts">
+import { type PropType } from 'vue'
+import { type ChessCoordinate, getChessCoordinate } from '../constants/chessConstants'
 
-export default defineComponent({
-  name: 'MainSidebar',
-  props: {
-    coordinates: {
-      type: Array as PropType<ChessCoordinate[]>,
-      required: true,
-    },
-  },
-});
+defineProps({
+  coordinates: {
+    type: Array as PropType<ChessCoordinate[]>,
+    required: true
+  }
+})
+
 </script>
 
 <style scoped>
-.sidebar {
-  padding: 0px 20px;
-  border-right: 1px solid #ccc;
-  overflow-y: auto;
+
+
+.sidebar-title {
+  position: sticky;
+  top: 0;
+  background: #222222;
+  z-index: 10;
+  padding-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 10px; 
+}
+
+li {
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 10px;
+  border: 1px solid #e1e1e1;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+p {
+  margin: 0; 
+  font-weight: bold;
+  flex: 1; 
 }
 </style>
-
