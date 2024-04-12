@@ -19,30 +19,27 @@ defineProps({
     required: true
   }
 })
-
 </script>
 
 <style scoped>
-
-
 .sidebar-title {
   position: sticky;
   top: 0;
   background: #222222;
   z-index: 10;
-  padding-bottom: 10px;
+  padding: 15px 10px;
+  width: 100%;
 }
 
 ul {
   list-style-type: none;
-  margin: 0;
+  margin-top: 0;
   padding: 0;
-  padding-top: 10px; 
 }
 
 li {
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
   border: 1px solid #e1e1e1;
   padding: 10px;
@@ -50,8 +47,8 @@ li {
 }
 
 p {
-  margin: 0; 
+  margin: 0;
   font-weight: bold;
-  flex: 1; 
+  flex: 1;
 }
 </style>

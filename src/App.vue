@@ -29,6 +29,13 @@ function handleCoordinateSelection(coordinate: ChessCoordinate) {
   font-weight: normal;
 }
 
+html {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   color: #ffffff;
   background: #222222;
@@ -50,67 +57,67 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
 }
 
 #app {
   display: flex;
-  height: 100vh;
-  width: 100vw;
-  background-color: #222222;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .sidebar-container {
-  flex: 1; 
+  flex: 1;
   height: 100%;
-  padding-left: 10px;
-  padding-top: 10px;
-  overflow-y: auto;
-  min-width: 125px; 
-  padding: 20px;
+  padding: 0px 20px;
   border-left: 1px solid #ccc;
-  position: relative;
+  overflow-y: auto;
+  width: 100%;
 }
 
 .chessboard-container {
-  flex: 3; 
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   padding: 30px;
   box-sizing: border-box;
+  max-height: 100%;
 }
 
 .chessboard {
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  margin: auto;
+  height: 90%;
+  min-width: 300px;
+  aspect-ratio: 1;
 }
 
 @media (max-width: 900px) {
   #app {
-    flex-direction: column; 
-  }
-
-  .sidebar,
-  .chessboard-container {
-    width: 100%;
-    max-width: none;
-    padding: 10px;
-  }
-
-  .chessboard {
-    max-width: 100%;
-    max-height: calc(70vh - 20px);
-    aspect-ratio: 1;
+    flex-direction: column;
   }
 
   .sidebar-container {
+    flex: 1 0 40vh;
     border-left: none;
     border-top: 1px solid #ccc;
     padding-top: 0;
     padding-left: 0;
-    max-height: 30vh;
+    height: auto;
+    min-height: 30vh;
+    max-height: 50vh;
+  }
+
+  .chessboard-container {
+    flex: 3 0 60vh;
+    height: auto;
+    max-height: 70vh;
+  }
+
+  .chessboard {
+    height: auto;
+    margin: auto;
   }
 }
 </style>
