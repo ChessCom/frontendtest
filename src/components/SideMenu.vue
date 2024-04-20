@@ -11,7 +11,6 @@
         :square="translateSquarePosition(square.col, square.row)"
         :clickIndex="index + 1"
         @click="handleRowSelection(square.col, square.row, index)"
-        :isActive="index === selectedItem"
       />
     </div>
     <div v-else>
