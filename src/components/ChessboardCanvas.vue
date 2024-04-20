@@ -92,7 +92,7 @@ const drawChessboard = (currentSquare: Square | null) => {
 
   canvas.width = squareSize * NUMBER_OF_SQUARES * devicePixelRatio
   canvas.height = squareSize * NUMBER_OF_SQUARES * devicePixelRatio
-  // I use this to avoid a blurry canvas
+  // This avoid a blurry canvas
 
   canvas.style.width = `${smallerDimension}px`
   canvas.style.height = `${smallerDimension}px`
