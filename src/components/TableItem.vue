@@ -1,5 +1,5 @@
 <template>
-  <div :class="['table-item', { isClickDisable: isClickDisabled, isActive: isActive }]">
+  <div :class="['table-item', { isClickDisable: isClickDisabled }]">
     <div class="row-number" v-if="clickIndex">{{ clickIndex }}.</div>
     <div class="row-square">{{ square }}</div>
   </div>
@@ -9,7 +9,6 @@ import { defineProps } from 'vue'
 
 const { clickIndex, square } = defineProps<{
   clickIndex?: number
-  isActive?: boolean
   isClickDisabled?: boolean
   square: string
 }>()
@@ -38,18 +37,5 @@ const { clickIndex, square } = defineProps<{
 
 .isClickDisable {
   pointer-events: none;
-}
-
-.isActive {
-  border-bottom-style: solid;
-  border-bottom-width: 3px;
-  border-color: black;
-  border-radius: 2px;
-  color: white;
-  cursor: default;
-  background-color: black;
-}
-.isActive:hover {
-  background-color: black;
 }
 </style>
