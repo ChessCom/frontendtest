@@ -25,8 +25,12 @@ import { ref } from 'vue'
 import { useClickSquareStore } from '@/stores/squares'
 import TableItem from './TableItem.vue'
 
+// Reference for the currently selected item
 const selectedItem = ref<number | null>(null)
+// Access to clicked squares store
 const { setCurrentSquare, clickedSquares } = useClickSquareStore()
+
+// Define constants to avoid magic numbers
 const NUMBER_OF_SQUARES = 8
 
 const handleRowSelection = (col: number, row: number, index: number) => {
@@ -34,6 +38,7 @@ const handleRowSelection = (col: number, row: number, index: number) => {
   selectedItem.value = index
 }
 
+// Function to translate square position to algebraic notation
 const translateSquarePosition = (colIndex: number, rowIndex: number): string => {
   const columnLetter = String.fromCharCode(97 + colIndex)
   const rowNumber = NUMBER_OF_SQUARES - rowIndex
@@ -67,7 +72,7 @@ const translateSquarePosition = (colIndex: number, rowIndex: number): string => 
   right: 0;
 }
 .table-container {
-  height: calc(100% - 6rem);
-  overflow-y: auto;
+  max-height: calc(100% - 6.1rem);
+  overflow: auto;
 }
 </style>
