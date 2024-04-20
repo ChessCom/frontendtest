@@ -18,11 +18,11 @@ import ChessCanvas from './components/ChessboardCanvas.vue'
   grid-template-rows: 55% 45%;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 800px) {
   #main {
     height: 100vh;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 100vh;
   }
 }
 </style>
