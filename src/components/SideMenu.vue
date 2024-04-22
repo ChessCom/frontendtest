@@ -5,27 +5,35 @@
       <div class="underline-border" />
     </div>
     <div class="table-container" v-if="clickedSquares.length">
+      <!-- Display the clicked squares in reverse order -->
       <TableItem
-        v-for="(square, index) in clickedSquares"
+        v-for="(square, index) in reversedSquares"
         :key="index"
         :square="translateSquarePosition(square.col, square.row)"
-        :clickIndex="index + 1"
-        @click="handleRowSelection(square.col, square.row, index)"
+        :clickIndex="reversedSquares.length - index"
+        :isSelected="selectedItem === clickIndex - index"
+        @click="handleRowSelection(square.col, square.row, clickIndex - index)"
       />
     </div>
+    <!-- Display a message if no squares have been clicked -->
     <div v-else>
-      <TableItem :square="'No squares clicked yet.'" :isClickDisabled="true" />
+      <TableItem :square="noSquaresSelected" :isClickDisabled="true" />
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
-import { ref } from 'vue'
+// Import necessary functions and components
+import { ref, computed, watchEffect } from 'vue'
 import { useClickSquareStore } from '@/stores/squares'
 import TableItem from './TableItem.vue'
 
+// Computed property to reverse the order of clicked squares
+const reversedSquares = computed(() => clickedSquares.slice().reverse())
+
 // Reference for the currently selected item
 const selectedItem = ref<number | null>(null)
+const noSquaresSelected = 'No squares clicked yet.'
+
 // Access to clicked squares store
 const { setCurrentSquare, clickedSquares } = useClickSquareStore()
 
@@ -33,9 +41,15 @@ const { setCurrentSquare, clickedSquares } = useClickSquareStore()
 const NUMBER_OF_SQUARES = 8
 
 const handleRowSelection = (col: number, row: number, index: number) => {
-  setCurrentSquare({ col: col, row: row })
+  setCurrentSquare({ id: index, col: col, row: row })
   selectedItem.value = index
 }
+
+// Watch for changes in the current square and update isSelected
+watchEffect(() => {
+  const { currentSquare } = useClickSquareStore()
+  if (currentSquare) selectedItem.value = currentSquare.id
+})
 
 // Function to translate square position to algebraic notation
 const translateSquarePosition = (colIndex: number, rowIndex: number): string => {
@@ -43,33 +57,48 @@ const translateSquarePosition = (colIndex: number, rowIndex: number): string => 
   const rowNumber = NUMBER_OF_SQUARES - rowIndex
   return `${columnLetter}${rowNumber}`
 }
+
+// Computed property to calculate the click index
+const clickIndex = computed(() => reversedSquares.value.length - 1)
 </script>
 
 <style scoped>
+/* Side menu container */
 .side-menu {
-  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
   height: 100%;
+  background-color: var(--color-background);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.1rem 0.1rem 0 var(rgba(0, 0, 0, 0.2));
 }
 
+/* Side menu title and label */
 .side-menu-title {
-  height: 5.6rem;
-  position: relative;
   display: flex;
+  justify-content: center;
+  position: relative;
+  height: 5.6rem;
   font-size: 1.4rem;
   border-bottom: 1px solid var(--color-border-white);
-  justify-content: center;
 }
+
 .side-menu-title-label {
   align-self: center;
 }
+
+/* Underline border for the title */
 .underline-border {
-  background-color: var(--color-border-white);
-  bottom: 0;
-  height: 0.3rem;
-  left: 0;
   position: absolute;
+  bottom: 0;
+  left: 0;
   right: 0;
+  height: 0.3rem;
+  background-color: var(--color-border-white);
 }
+
+/* Table container */
 .table-container {
   max-height: calc(100% - 6.1rem);
   overflow: auto;
