@@ -9,6 +9,7 @@
 
   --c-divider-black: #383734;
   --c-divider-white: #c3c2c1;
+  --c-true-black: #000000;
 }
 
 :root {
@@ -39,7 +40,7 @@ html {
   font-size: 10px;
 }
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   color: var(--color-text);
   background: var(--color-background-soft);
   transition:
