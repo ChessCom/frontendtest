@@ -12,17 +12,33 @@ import ChessCanvas from './components/ChessboardCanvas.vue'
 
 <style scoped>
 #main {
-  height: 100vh;
+  height: 100dvh;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 55% 45%;
 }
 
-@media only screen and (min-width: 800px) {
+/* Small devices (portrait tablets and large phones, 600px and below) */
+@media only screen and (max-width: 600px) {
   #main {
-    height: 100vh;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 100vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+  }
+}
+
+/* Small devices (landscape phones, 601px and up) */
+@media only screen and (min-width: 601px) {
+  #main {
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 100dvh;
+  }
+}
+
+/* Medium devices (landscape tablets, 992px and up) */
+@media only screen and (min-width: 992px) {
+  #main {
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 100dvh;
   }
 }
 </style>
