@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 type Square = {
+  id: number
   row: number
   col: number
 }
