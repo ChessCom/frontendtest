@@ -11,7 +11,6 @@
 <script>
 export default {
   name: "SideBar",
-
   props: {
     selectedSquares: { type: Array }
   }
@@ -21,10 +20,10 @@ export default {
 <style>
 #sidebar {
   height: calc(80vh - 40px);
-  width: 35vw;
-  max-width: 300px;
-  max-height: 600px;
+  max-width: 250px;
+  max-height: 700px;
   margin-top: 15px;
+  margin-bottom: 0%;
   background-color: #36454F;
   overflow: scroll;
   font-weight: bold;
