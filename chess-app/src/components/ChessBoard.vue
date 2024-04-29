@@ -160,7 +160,7 @@ height: calc(85vw - 35vw);
 flex-wrap: wrap;
 align-self: center;
 margin-right: 60px;
-padding: 0go;
+padding: 0;
 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
