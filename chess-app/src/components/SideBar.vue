@@ -20,6 +20,7 @@ export default {
 <style>
 #sidebar {
   height: calc(80vh - 40px);
+  width: 35vw;
   max-width: 250px;
   max-height: 700px;
   margin-top: 15px;
