@@ -3,9 +3,9 @@
 Welcome to the [Chess.com](https://chess.com) front end programming challenge!
 
 # Instructions
-1. Fork this repository.
-2. Create a VueJS application that satisfies the requirements detailed below.
-3. Provide links to your fork of this repository and a live demo of your application.
+1. Create a VueJS application that satisfies the requirements detailed below.
+2. Create a .zip file containing all files of your completed project.
+3. Submit your .zip file (downloadable link or email attachment) and a link to a live demo of your project.
 
 # Application Requirements
 1. Create a page with a chessboard and a sidebar.
